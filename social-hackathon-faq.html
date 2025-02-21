@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Social Hackathon - FAQs</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&family=Montserrat:wght@400;700&display=swap');
+        
+        :root {
+            --primary: #FFFF00;
+            --primary-dark: #d6d600;
+            --background: #000000;
+            --card-bg: rgba(15, 15, 15, 0.7);
+            --text: #ffffff;
+            --text-secondary: #dddddd;
+            --border: #333333;
+            --hover-bg: rgba(30, 30, 30, 0.9);
+            --glow: rgba(255, 255, 0, 0.2);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .background-graphics {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.2;
+        }
+        
+        .background-graphics .circuit-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,10 L90,50 L50,90 L10,50 Z' fill='none' stroke='%23333' stroke-width='0.5'/%3E%3Ccircle cx='50' cy='10' r='3' fill='none' stroke='%23333' stroke-width='0.5'/%3E%3Ccircle cx='90' cy='50' r='3' fill='none' stroke='%23333' stroke-width='0.5'/%3E%3Ccircle cx='50' cy='90' r='3' fill='none' stroke='%23333' stroke-width='0.5'/%3E%3Ccircle cx='10' cy='50' r='3' fill='none' stroke='%23333' stroke-width='0.5'/%3E%3Cline x1='50' y1='10' x2='10' y2='50' stroke='%23333' stroke-width='0.5'/%3E%3Cline x1='50' y1='10' x2='90' y2='50' stroke='%23333' stroke-width='0.5'/%3E%3Cline x1='10' y1='50' x2='50' y2='90' stroke='%23333' stroke-width='0.5'/%3E%3Cline x1='90' y1='50' x2='50' y2='90' stroke='%23333' stroke-width='0.5'/%3E%3C/svg%3E");
+            background-size: 300px 300px;
+            opacity: 0.1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+        }
+        
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        
+        .menu-button {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            background: rgba(25, 25, 25, 0.5);
+            border: 1px solid var(--border);
+            color: var(--text);
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .menu-button:hover {
+            background: rgba(50, 50, 50, 0.8);
+            box-shadow: 0 0 15px var(--glow);
+        }
+        
+        .menu-button::after {
+            content: '+';
+            font-size: 18px;
+        }
+        
+        .menu {
+            position: absolute;
+            top: 85px;
+            right: 0;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            display: none;
+            min-width: 220px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), 0 0 20px var(--glow);
+            z-index: 100;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .menu.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .menu ul {
+            list-style: none;
+        }
+        
+        .menu li {
+            margin-bottom: 15px;
+            transition: transform 0.2s ease;
+        }
+        
+        .menu li:hover {
+            transform: translateX(5px);
+        }
+        
+        .menu li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+            font-weight: 500;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .menu a:hover {
+            color: var(--primary);
+        }
+        
+        .page-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 60px;
+            font-weight: 900;
+            text-align: center;
+            margin: 40px 0 60px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto 60px;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+            background-color: rgba(34, 34, 34, 0.3);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            transform: translateY(-2px);
+            background-color: rgba(34, 34, 34, 0.5);
+        }
+        
+        .faq-question {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            padding: 25px 30px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+        
+        .faq-question:after {
+            content: '+';
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFFF00;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-question.active {
+            color: #FFFF00;
+        }
+        
+        .faq-question.active:after {
+            content: '-';
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.5s ease;
+            line-height: 1.8;
+            padding: 0 30px;
+            font-size: 16px;
+            opacity: 0.9;
+            color: #dddddd;
+        }
+        
+        .faq-answer.show {
+            max-height: 500px;
+            padding: 0 30px 30px;
+            border-left: 2px solid #FFFF00;
+        }
+        
+        .highlight {
+            color: #FFFF00;
+            font-weight: 700;
+        }
+        
+        footer {
+            padding: 30px 0;
+            font-size: 12px;
+            color: #555555;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 40px;
+                margin-bottom: 40px;
+            }
+            
+            .faq-question {
+                font-size: 16px;
+                padding: 20px;
+            }
+            
+            .faq-answer.show {
+                padding: 0 20px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-graphics">
+        <div class="circuit-grid"></div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                SH-2025
+            </div>
+            <button class="menu-button" id="menuButton">MENU</button>
+            <div class="menu" id="menu">
+                <ul>
+                    <li><a href="social-hackathon-home.html">Home</a></li>
+                    <li><a href="social-hackathon-about.html">About</a></li>
+                    <li><a href="social-hackathon-themes.html">Themes</a></li>
+                    <li><a href="social-hackathon-schedule.html">Schedule</a></li>
+                    <li><a href="social-hackathon-sponsors.html">Sponsors</a></li>
+                    <li><a href="social-hackathon-organizers.html">Organizers</a></li>
+                    <li><a href="social-hackathon-faq.html" class="active">FAQs</a></li>
+                </ul>
+            </div>
+        </header>
+        
+        <main>
+            <h1 class="page-title">FAQs<span style="color:#FFFF00">.</span></h1>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">What is The Social Hackathon?</div>
+                    <div class="faq-answer">
+                        The <span class="highlight">Social Hackathon</span> (TSH) brings together tech innovators and social entrepreneurs to create solutions that drive positive change and address critical societal challenges. It's a collaborative event where participants form teams to develop prototype solutions to real-world problems within a limited timeframe.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">When and where will TSH 2025 take place?</div>
+                    <div class="faq-answer">
+                        TSH 2025 will be held from <span class="highlight">March 10-12, 2025</span>. The event will take place at the Global Innovation Center. Remote participation options are also available for international participants.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Who can participate?</div>
+                    <div class="faq-answer">
+                        TSH is open to developers, designers, entrepreneurs, subject matter experts, students, and anyone passionate about using technology to solve social problems. Teams can consist of 3-5 members with diverse skill sets. We encourage participation from <span class="highlight">underrepresented groups in tech</span>.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">What are this year's challenge tracks?</div>
+                    <div class="faq-answer">
+                        The 2025 tracks include: <span class="highlight">Climate Action & Sustainability</span>, <span class="highlight">Digital Inclusion & Accessibility</span>, <span class="highlight">Mental Health & Wellbeing</span>, and <span class="highlight">Ethical AI for Social Good</span>. Teams can choose to work on any of these areas or propose their own challenge within the broader theme of social innovation.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Is there an entry fee?</div>
+                    <div class="faq-answer">
+                        <span class="highlight">No</span>, participation in TSH 2025 is completely free. We believe in removing barriers to participation in order to maximize diversity and inclusion.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">What resources will be provided?</div>
+                    <div class="faq-answer">
+                        Participants will have access to: high-speed internet, workspace, mentorship from industry experts, workshops on relevant technologies, meals and refreshments, and API access from our sponsors. Teams are expected to bring their own devices.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">What are the prizes?</div>
+                    <div class="faq-answer">
+                        The winning team will receive <span class="highlight">$15,000</span> in seed funding, incubation support, and the opportunity to present at the Global Social Innovation Summit. Track winners will receive <span class="highlight">$5,000</span> each. Additionally, all participants will be eligible for recruitment opportunities with our partner organizations.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">How will projects be judged?</div>
+                    <div class="faq-answer">
+                        Projects will be evaluated based on: social impact potential, technical innovation, feasibility and sustainability, user experience design, and presentation quality. Our panel of judges includes social entrepreneurs, technical experts, and impact investors.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Do I need to have a team before registering?</div>
+                    <div class="faq-answer">
+                        <span class="highlight">No</span>, you can register individually and form teams at our pre-event networking session or during the first day of the hackathon. We have a team formation platform to help you connect with potential teammates based on complementary skills.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">What should I bring?</div>
+                    <div class="faq-answer">
+                        Participants should bring their laptops, chargers, any specialized hardware needed for their projects, and a government-issued ID for check-in. Comfortable clothing and a reusable water bottle are also recommended.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Is there a code of conduct?</div>
+                    <div class="faq-answer">
+                        <span class="highlight">Yes</span>, all participants must adhere to our Code of Conduct which promotes a respectful, inclusive, and collaborative environment. This includes guidelines on appropriate behavior, communication, and project content. The full Code of Conduct is available on our website.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">What happens to the intellectual property created?</div>
+                    <div class="faq-answer">
+                        Teams retain <span class="highlight">full ownership</span> of their projects. However, we encourage open-source approaches and sharing of learnings. If you accept certain sponsor prizes, there may be specific IP terms attached, which will be clearly communicated.
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            &copy; 2025 The Social Hackathon. All rights reserved.
+        </footer>
+    </div>
+    
+    <script>
+      // Menu toggle with animation
+      const menuButton = document.getElementById('menuButton');
+                    const menu = document.getElementById('menu');
+                    
+                    menuButton.addEventListener('click', () => {
+                        if (menu.style.display === 'block') {
+                            menu.style.opacity = '0';
+                            menu.style.transform = 'translateY(10px)';
+                            setTimeout(() => {
+                                menu.style.display = 'none';
+                            }, 300);
+                        } else {
+                            menu.style.display = 'block';
+                            setTimeout(() => {
+                                menu.style.opacity = '1';
+                                menu.style.transform = 'translateY(0)';
+                            }, 10);
+                        }
+                    });
+        
+        // FAQ accordion functionality
+        const questions = document.querySelectorAll('.faq-question');
+        
+        questions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isActive = question.classList.contains('active');
+                
+                // Close all other answers
+                questions.forEach(q => {
+                    if (q !== question) {
+                        q.classList.remove('active');
+                        q.nextElementSibling.classList.remove('show');
+                    }
+                });
+                
+                // Toggle current answer
+                if (isActive) {
+                    question.classList.remove('active');
+                    answer.classList.remove('show');
+                } else {
+                    question.classList.add('active');
+                    answer.classList.add('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

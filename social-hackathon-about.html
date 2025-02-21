@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - The Social Hackathon 2025</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&family=Montserrat:wght@400;500;700&display=swap');
+        
+        :root {
+            --primary: #FFFF00;
+            --primary-dark: #d6d600;
+            --background: #000000;
+            --card-bg: rgba(15, 15, 15, 0.7);
+            --text: #ffffff;
+            --text-secondary: #dddddd;
+            --border: #333333;
+            --hover-bg: rgba(30, 30, 30, 0.9);
+            --glow: rgba(255, 255, 0, 0.2);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Enhanced background graphics */
+        .background-graphics {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .circuit-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,10 L90,50 L50,90 L10,50 Z' fill='none' stroke='%23333' stroke-width='0.5'/%3E%3Ccircle cx='50' cy='10' r='3' fill='none' stroke='%23333' stroke-width='0.5'/%3E%3Ccircle cx='90' cy='50' r='3' fill='none' stroke='%23333' stroke-width='0.5'/%3E%3Ccircle cx='50' cy='90' r='3' fill='none' stroke='%23333' stroke-width='0.5'/%3E%3Ccircle cx='10' cy='50' r='3' fill='none' stroke='%23333' stroke-width='0.5'/%3E%3Cline x1='50' y1='10' x2='10' y2='50' stroke='%23333' stroke-width='0.5'/%3E%3Cline x1='50' y1='10' x2='90' y2='50' stroke='%23333' stroke-width='0.5'/%3E%3Cline x1='10' y1='50' x2='50' y2='90' stroke='%23333' stroke-width='0.5'/%3E%3Cline x1='90' y1='50' x2='50' y2='90' stroke='%23333' stroke-width='0.5'/%3E%3C/svg%3E");
+            background-size: 300px 300px;
+            opacity: 0.1;
+        }
+        
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(25, 25, 25, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+            z-index: 1;
+        }
+        
+        .floating-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 255, 0, 0.1);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+            z-index: -1;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.1;
+            }
+            90% {
+                opacity: 0.1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+        
+        /* Main container */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(51, 51, 51, 0.5);
+            position: relative;
+        }
+        
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            letter-spacing: 3px;
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .logo a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        .logo a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .logo a:hover {
+            color: var(--primary);
+        }
+        
+        .logo a:hover::after {
+            width: 100%;
+        }
+        /* menu */
+        .menu-button {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            background: rgba(25, 25, 25, 0.5);
+            border: 1px solid var(--border);
+            color: var(--text);
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .menu-button:hover {
+            background: rgba(50, 50, 50, 0.8);
+            box-shadow: 0 0 15px var(--glow);
+        }
+        
+        .menu-button::after {
+            content: '+';
+            font-size: 18px;
+        }
+        
+        .menu {
+            position: absolute;
+            top: 85px;
+            right: 0;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            display: none;
+            min-width: 220px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), 0 0 20px var(--glow);
+            z-index: 100;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .menu.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .menu ul {
+            list-style: none;
+        }
+        
+        .menu li {
+            margin-bottom: 15px;
+            transition: transform 0.2s ease;
+        }
+        
+        .menu li:hover {
+            transform: translateX(5px);
+        }
+        
+        .menu li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+            font-weight: 500;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .menu a:hover {
+            color: var(--primary);
+        }
+        
+        /* Main content */
+        main {
+            flex: 1;
+            padding: 80px 0;
+        }
+        
+        .page-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 70px;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 80px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(to right, #ffffff, var(--primary), #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+        }
+        
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        
+        /* About grid section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 100px;
+        }
+        
+        .about-section {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            position: relative;
+        }
+        
+        .about-section h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .about-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 1.5px;
+        }
+        
+        .about-section p {
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+        
+        /* Stats grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .stat-item {
+            background-color: var(--card-bg);
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--border);
+            padding: 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 0, 0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 15px var(--glow);
+            border-color: rgba(255, 255, 0, 0.3);
+        }
+        
+        .stat-item:hover::before {
+            opacity: 1;
+        }
+        
+        .stat-value {
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary);
+            text-shadow: 0 0 15px var(--glow);
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        /* Testimonials section */
+        .testimonials {
+            margin-top: 120px;
+            position: relative;
+        }
+        
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border), transparent);
+        }
+        
+        .testimonials-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #ffffff;
+            position: relative;
+        }
+        
+        .testimonials-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 1.5px;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        
+        .testimonial-card {
+            background-color: var(--card-bg);
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--border);
+            padding: 40px 30px;
+            transition: all 0.4s ease;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 120px;
+            font-family: 'Georgia', serif;
+            color: rgba(255, 255, 0, 0.08);
+            line-height: 1;
+            z-index: 0;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px var(--glow);
+            border-color: rgba(255, 255, 0, 0.2);
+            background-color: var(--hover-bg);
+        }
+        
+        .stars {
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-size: 18px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-text {
+            margin-bottom: 30px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            font-weight: 700;
+            font-size: 18px;
+            color: #ffffff;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-role {
+            font-size: 14px;
+            color: var(--primary);
+            margin-top: 5px;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Timeline section */
+        .timeline {
+            margin-top: 120px;
+            position: relative;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 60px 40px;
+            background-color: rgba(15, 15, 15, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 0, 0.05) 0%, transparent 100%);
+            border-radius: 15px;
+            z-index: -1;
+        }
+        
+        .timeline-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #ffffff;
+            position: relative;
+        }
+        
+        .timeline-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 1.5px;
+        }
+        
+        .timeline-items-container {
+            position: relative;
+        }
+        
+        .timeline-items-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 20px;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--primary), var(--primary), transparent);
+        }
+        
+        .timeline-item {
+            padding-left: 60px;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 11px;
+            top: 10px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--background);
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--glow);
+            z-index: 2;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .timeline-item:hover .timeline-dot {
+            transform: scale(1.2);
+            box-shadow: 0 0 15px var(--glow);
+        }
+        
+        .timeline-content {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 15px;
+            width: 20px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .timeline-item:hover .timeline-content {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 15px var(--glow);
+            border-color: rgba(255, 255, 0, 0.3);
+        }
+        
+        .timeline-date {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .timeline-date::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .timeline-text {
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            font-size: 14px;
+            color: #555555;
+            text-align: center;
+            border-top: 1px solid rgba(51, 51, 51, 0.5);
+            margin-top: 80px;
+        }
+        
+        footer a {
+            color: #777777;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        footer a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 1024px) {
+            .page-title {
+                font-size: 60px;
+            }
+            
+            .about-grid {
+                gap: 40px;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 48px;
+            }
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline {
+                padding: 40px 20px;
+            }
+            
+            .timeline-item {
+                padding-left: 50px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 36px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            main {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-graphics">
+        <div class="circuit-grid"></div>
+        <div class="gradient-overlay"></div>
+        <div class="floating-particles" id="particles"></div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <a href="social-hackathon-home.html">SH-2025</a>
+            </div>
+            <button class="menu-button" id="menuButton">MENU</button>
+            <div class="menu" id="menu">
+                <ul>
+                    <li><a href="social-hackathon-home.html">Home</a></li>
+                    <li><a href="social-hackathon-about.html">About</a></li>
+                    <li><a href="social-hackathon-themes.html">Themes</a></li>
+                    <li><a href="social-hackathon-schedule.html">Schedule</a></li>
+                    <li><a href="social-hackathon-sponsors.html">Sponsors</a></li>
+                    <li><a href="social-hackathon-organizers.html">Organizers</a></li>
+                    <li><a href="social-hackathon-faq.html">FAQs</a></li>
+                </ul>
+            </div>
+        </header>
+        
+        <main>
+            <h1 class="page-title">About</h1>
+            
+            <div class="about-grid">
+                <div class="about-section">
+                    <h2>Our Mission</h2>
+                    <p>
+                        The Social Hackathon brings together tech innovators, developers, 
+                        and changemakers to create technology-driven solutions for pressing 
+                        social challenges. We believe in the power of collaborative 
+                        innovation to address global issues and create meaningful impact.
+                    </p>
+                    <p>
+                        Founded in 2019, our hackathon has grown to become a premier 
+                        platform for social entrepreneurship and tech-for-good initiatives. 
+                        We focus on sustainable development goals, community empowerment, 
+                        and accessible technology solutions.
+                    </p>
+                    <p>
+                        The 2025 edition will run for 24 hours of intense collaboration, 
+                        mentorship, and innovation from May 15-16, 2025, bringing together 
+                        diverse perspectives and expertise.
+                    </p>
+                </div>
+                
+                <div class="about-section">
+                    <h2>2024 Impact</h2>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value">500+</div>
+                            <div class="stat-label">Participants</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">125+</div>
+                            <div class="stat-label">Projects</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">7+</div>
+                            <div class="stat-label">States</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">15</div>
+                            <div class="stat-label">SDGs Addressed</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonials">
+                <h2 class="testimonials-title">What Participants Say</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="stars">★ ★ ★ ★ ★</div>
+                        <p class="testimonial-text">
+                            "The Social Hackathon was an incredible experience that helped me 
+                            grow both professionally and personally. The mentorship was outstanding!"
+                        </p>
+                        <div class="testimonial-author">Sarah Chen</div>
+                        <div class="testimonial-role">Winner 2024</div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="stars">★ ★ ★ ★ ★</div>
+                        <p class="testimonial-text">
+                            "Meeting like-minded individuals and working together to solve 
+                            real-world problems was an unforgettable experience."
+                        </p>
+                        <div class="testimonial-author">Marcus Johnson</div>
+                        <div class="testimonial-role">Participant 2024</div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="stars">★ ★ ★ ★ ★</div>
+                        <p class="testimonial-text">
+                            "The networking opportunities and the chance to work on meaningful 
+                            projects made this hackathon stand out from others."
+                        </p>
+                        <div class="testimonial-author">Priya Patel</div>
+                        <div class="testimonial-role">Finalist 2024</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline">
+                <h2 class="timeline-title">Our Journey</h2>
+                <div class="timeline-items-container">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2019</div>
+                            <div class="timeline-text">
+                                First edition launched with 160 participants from 7 countries, 
+                                focusing on education and healthcare solutions.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2024</div>
+                            <div class="timeline-text">
+                                Expanded to 500+ participants with new tracks for climate tech, 
+                                accessibility solutions, and financial inclusion.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2025</div>
+                            <div class="timeline-text">
+                                The upcoming edition aims to bring together 1000+ global innovators 
+                                with an expanded focus on sustainable cities, digital equity, and 
+                                crisis response technology.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <div class="footer-content">
+                <span>&copy; 2025 The Social Hackathon. All rights reserved.</span>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- <script>
+        // Menu toggle with animation
+        const menuButton = document.getElementById('menuButton');
+        const menu = document.getElementById('menu');
+        
+        menuButton.addEventListener('click', () => {
+            if (menu.style.display === 'block') {
+                menu.style.opacity = '0';
+                menu.style.transform = 'translateY(10px)';
+                setTimeout(() => {
+                    menu.style.display = 'none';
+                }, 300);
+            } else {
+                menu.style.display = 'block';
+                setTimeout(() => {
+                    menu.style.opacity = '1';
+                    menu.style.transform = 'translateY(0)';
+                }, 10);
+            }
+        });
+        
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size
+                const size = Math.random() * 6 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                const posX = Math. -->
+                <script>
+                    // Menu toggle with animation
+                    const menuButton = document.getElementById('menuButton');
+                    const menu = document.getElementById('menu');
+                    
+                    menuButton.addEventListener('click', () => {
+                        if (menu.style.display === 'block') {
+                            menu.style.opacity = '0';
+                            menu.style.transform = 'translateY(10px)';
+                            setTimeout(() => {
+                                menu.style.display = 'none';
+                            }, 300);
+                        } else {
+                            menu.style.display = 'block';
+                            setTimeout(() => {
+                                menu.style.opacity = '1';
+                                menu.style.transform = 'translateY(0)';
+                            }, 10);
+                        }
+                    });
+                    
+                    // Create floating particles
+                    function createParticles() {
+                        const particlesContainer = document.getElementById('particles');
+                        const particleCount = 30;
+                        
+                        for (let i = 0; i < particleCount; i++) {
+                            const particle = document.createElement('div');
+                            particle.classList.add('particle');
+                            
+                            // Random size
+                            const size = Math.random() * 6 + 2;
+                            particle.style.width = `${size}px`;
+                            particle.style.height = `${size}px`;
+                            
+                            // Random position
+                            const posX = Math.random() * 100;
+                            const posY = Math.random() * 100;
+                            particle.style.left = `${posX}%`;
+                            particle.style.top = `${posY}%`;
+                            
+                            // Random animation delay
+                            const delay = Math.random() * 15;
+                            particle.style.animationDelay = `${delay}s`;
+                            
+                            // Append particle to container
+                            particlesContainer.appendChild(particle);
+                        }
+                    }
+                    
+                    // Call the function to create particles
+                    createParticles();
+                </script>
+                    
+    </body>
+    </html>

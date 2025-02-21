@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Themes - The Social Hackathon</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&family=Montserrat:wght@400;700&display=swap');
+        
+        :root {
+            --primary: #FFFF00;
+            --primary-dark: #d6d600;
+            --background: #000000;
+            --card-bg: rgba(15, 15, 15, 0.7);
+            --text: #ffffff;
+            --text-secondary: #dddddd;
+            --border: #333333;
+            --hover-bg: rgba(30, 30, 30, 0.9);
+            --glow: rgba(255, 255, 0, 0.2);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .background-graphics {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.2;
+        }
+        
+        .background-graphics .circuit-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,10 L90,50 L50,90 L10,50 Z' fill='none' stroke='%23333' stroke-width='0.5'/%3E%3Ccircle cx='50' cy='10' r='3' fill='none' stroke='%23333' stroke-width='0.5'/%3E%3Ccircle cx='90' cy='50' r='3' fill='none' stroke='%23333' stroke-width='0.5'/%3E%3Ccircle cx='50' cy='90' r='3' fill='none' stroke='%23333' stroke-width='0.5'/%3E%3Ccircle cx='10' cy='50' r='3' fill='none' stroke='%23333' stroke-width='0.5'/%3E%3Cline x1='50' y1='10' x2='10' y2='50' stroke='%23333' stroke-width='0.5'/%3E%3Cline x1='50' y1='10' x2='90' y2='50' stroke='%23333' stroke-width='0.5'/%3E%3Cline x1='10' y1='50' x2='50' y2='90' stroke='%23333' stroke-width='0.5'/%3E%3Cline x1='90' y1='50' x2='50' y2='90' stroke='%23333' stroke-width='0.5'/%3E%3C/svg%3E");
+            background-size: 300px 300px;
+            opacity: 0.1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+        }
+        
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        .menu-button {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            background: rgba(25, 25, 25, 0.5);
+            border: 1px solid var(--border);
+            color: var(--text);
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .menu-button:hover {
+            background: rgba(50, 50, 50, 0.8);
+            box-shadow: 0 0 15px var(--glow);
+        }
+        
+        .menu-button::after {
+            content: '+';
+            font-size: 18px;
+        }
+        
+        .menu {
+            position: absolute;
+            top: 85px;
+            right: 0;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            display: none;
+            min-width: 220px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), 0 0 20px var(--glow);
+            z-index: 100;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .menu.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .menu ul {
+            list-style: none;
+        }
+        
+        .menu li {
+            margin-bottom: 15px;
+            transition: transform 0.2s ease;
+        }
+        
+        .menu li:hover {
+            transform: translateX(5px);
+        }
+        
+        .menu li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+            font-weight: 500;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .menu a:hover {
+            color: var(--primary);
+        }
+        main {
+            flex: 1;
+            padding: 60px 0;
+        }
+        
+        .page-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 60px;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .page-title span {
+            color: #FFFF00;
+        }
+        
+        .page-subtitle {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            line-height: 1.6;
+            color: #dddddd;
+        }
+        
+        .themes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .theme-card {
+            background-color: rgba(34, 34, 34, 0.5);
+            border: 1px solid #444;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .theme-card:hover {
+            transform: translateY(-5px);
+            background-color: rgba(34, 34, 34, 0.8);
+            border-color: #FFFF00;
+        }
+        
+        .theme-header {
+            padding: 20px;
+            background-color: rgba(255, 255, 0, 0.1);
+            border-bottom: 1px solid #444;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .theme-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #FFFF00;
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .theme-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #FFFF00;
+        }
+        
+        .theme-content {
+            padding: 20px;
+        }
+        
+        .theme-description {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: #dddddd;
+        }
+        
+        .theme-challenges {
+            margin-top: 20px;
+        }
+        
+        .theme-challenges h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        
+        .challenge-list {
+            list-style-type: none;
+        }
+        
+        .challenge-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+            color: #dddddd;
+        }
+        
+        .challenge-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #FFFF00;
+        }
+        
+        .special-note {
+            background-color: rgba(255, 255, 0, 0.1);
+            border: 1px solid rgba(255, 255, 0, 0.3);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 60px;
+        }
+        
+        .special-note h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #FFFF00;
+        }
+        
+        .special-note p {
+            line-height: 1.6;
+            color: #dddddd;
+        }
+        
+        footer {
+            padding: 30px 0;
+            font-size: 12px;
+            color: #555555;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 40px;
+            }
+            
+            .themes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-graphics">
+        <div class="circuit-grid"></div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <a href="index.html" style="color: #ffffff; text-decoration: none;">SH-2025</a>
+            </div>
+            <button class="menu-button" id="menuButton">MENU</button>
+            <div class="menu" id="menu">
+                <ul>
+                    <li><a href="social-hackathon-home.html">Home</a></li>
+                    <li><a href="social-hackathon-about.html">About</a></li>
+                    <li><a href="social-hackathon-themes.html">Themes</a></li>
+                    <li><a href="social-hackathon-schedule.html">Schedule</a></li>
+                    <li><a href="social-hackathon-sponsors.html">Sponsors</a></li>
+                    <li><a href="social-hackathon-organizers.html">Organizers</a></li>
+                    <li><a href="social-hackathon-faq.html">FAQs</a></li>
+                </ul>
+            </div>
+        </header>
+        
+        <main>
+            <h1 class="page-title">Hack<span>Themes</span></h1>
+            <p class="page-subtitle">
+                For SH 2025, we've identified these critical areas where technology can drive meaningful social change.
+                Teams may choose to work within one of these themes or propose an innovative solution that addresses a social challenge not covered here.
+            </p>
+            
+            <div class="themes-grid">
+                <div class="theme-card">
+                    <div class="theme-header">
+                        <div class="theme-icon">I</div>
+                        <h3 class="theme-title">Student Innovation using IndiaStack</h3>
+                    </div>
+                    <div class="theme-content">
+                        <p class="theme-description">
+                            Leverage IndiaStack's digital infrastructure (Aadhaar, UPI, DigiLocker, etc.) 
+                            to create innovative solutions that enhance governance, finance, and public services.
+                        </p>
+                        <div class="theme-challenges">
+                            <h4>Example Challenges:</h4>
+                            <ul class="challenge-list">
+                                <li>Digital identity verification for seamless public services</li>
+                                <li>Financial inclusion platforms using UPI integration</li>
+                                <li>Document management solutions with DigiLocker</li>
+                                <li>Privacy-preserving applications using IndiaStack APIs</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="theme-card">
+                    <div class="theme-header">
+                        <div class="theme-icon">U</div>
+                        <h3 class="theme-title">Urban Planning</h3>
+                    </div>
+                    <div class="theme-content">
+                        <p class="theme-description">
+                            Design smart, sustainable, and tech-driven urban solutions to optimize 
+                            transportation, housing, and public infrastructure for better city living.
+                        </p>
+                        <div class="theme-challenges">
+                            <h4>Example Challenges:</h4>
+                            <ul class="challenge-list">
+                                <li>Traffic optimization systems for congested urban areas</li>
+                                <li>Smart housing solutions for urban density challenges</li>
+                                <li>Public space utilization and management tools</li>
+                                <li>Resource allocation systems for urban infrastructure</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="theme-card">
+                    <div class="theme-header">
+                        <div class="theme-icon">E</div>
+                        <h3 class="theme-title">Education</h3>
+                    </div>
+                    <div class="theme-content">
+                        <p class="theme-description">
+                            Develop AI-driven, personalized, and accessible learning platforms to improve 
+                            education quality, inclusivity, and skill development.
+                        </p>
+                        <div class="theme-challenges">
+                            <h4>Example Challenges:</h4>
+                            <ul class="challenge-list">
+                                <li>Adaptive learning systems for diverse student needs</li>
+                                <li>Low-resource educational tools for underserved communities</li>
+                                <li>AI-powered skill assessment and career guidance platforms</li>
+                                <li>Collaboration tools for distributed learning environments</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="theme-card">
+                    <div class="theme-header">
+                        <div class="theme-icon">G</div>
+                        <h3 class="theme-title">Energy Efficiency in AI/Computing</h3>
+                    </div>
+                    <div class="theme-content">
+                        <p class="theme-description">
+                            Optimize AI models and computing systems to reduce energy consumption, 
+                            improve sustainability, and lower carbon footprints.
+                        </p>
+                        <div class="theme-challenges">
+                            <h4>Example Challenges:</h4>
+                            <ul class="challenge-list">
+                                <li>Lightweight AI model design for mobile applications</li>
+                                <li>Energy monitoring and optimization tools for data centers</li>
+                                <li>Efficient edge computing solutions for IoT devices</li>
+                                <li>Carbon footprint calculators for computational workloads</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="theme-card">
+                    <div class="theme-header">
+                        <div class="theme-icon">H</div>
+                        <h3 class="theme-title">Healthcare Access</h3>
+                    </div>
+                    <div class="theme-content">
+                        <p class="theme-description">
+                            Create solutions that improve healthcare accessibility, particularly for 
+                            underserved communities, through telemedicine, AI diagnostics, and digital health records.
+                        </p>
+                        <div class="theme-challenges">
+                            <h4>Example Challenges:</h4>
+                            <ul class="challenge-list">
+                                <li>Telemedicine platforms for remote diagnostics</li>
+                                <li>AI-powered health screening tools for resource-limited settings</li>
+                                <li>Medical record systems for continuity of care</li>
+                                <li>Health education and preventive care applications</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="theme-card">
+                    <div class="theme-header">
+                        <div class="theme-icon">F</div>
+                        <h3 class="theme-title">Financial Inclusion</h3>
+                    </div>
+                    <div class="theme-content">
+                        <p class="theme-description">
+                            Build tools and platforms that extend financial services to unbanked and 
+                            underbanked populations, focusing on security, accessibility, and education.
+                        </p>
+                        <div class="theme-challenges">
+                            <h4>Example Challenges:</h4>
+                            <ul class="challenge-list">
+                                <li>Simplified banking interfaces for first-time users</li>
+                                <li>Peer-to-peer lending platforms for underserved communities</li>
+                                <li>Financial literacy education tools and simulators</li>
+                                <li>Offline-capable payment solutions for areas with limited connectivity</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="theme-card">
+                    <div class="theme-header">
+                        <div class="theme-icon">C</div>
+                        <h3 class="theme-title">Climate Action Tech</h3>
+                    </div>
+                    <div class="theme-content">
+                        <p class="theme-description">
+                            Develop monitoring tools, renewable energy solutions, and carbon footprint 
+                            trackers to combat climate change and promote environmental sustainability.
+                        </p>
+                        <div class="theme-challenges">
+                            <h4>Example Challenges:</h4>
+                            <ul class="challenge-list">
+                                <li>Environmental data collection and visualization platforms</li>
+                                <li>Community-based renewable energy management systems</li>
+                                <li>Personal and organizational carbon footprint trackers</li>
+                                <li>AI-powered resource consumption optimization tools</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="special-note">
+                <h3>Cross-theme Innovation</h3>
+                <p>
+                    We encourage participants to consider solutions that span multiple themes. Some of the most impactful 
+                    innovations emerge at the intersection of different domains. Teams are welcome to combine elements from 
+                    different themes to create comprehensive solutions for complex social challenges.
+                </p>
+            </div>
+        </main>
+        
+        <footer>
+            &copy; 2025 The Social Hackathon. All rights reserved.
+        </footer>
+    </div>
+    
+    <script>
+        // Menu toggle with animation
+        const menuButton = document.getElementById('menuButton');
+                    const menu = document.getElementById('menu');
+                    
+                    menuButton.addEventListener('click', () => {
+                        if (menu.style.display === 'block') {
+                            menu.style.opacity = '0';
+                            menu.style.transform = 'translateY(10px)';
+                            setTimeout(() => {
+                                menu.style.display = 'none';
+                            }, 300);
+                        } else {
+                            menu.style.display = 'block';
+                            setTimeout(() => {
+                                menu.style.opacity = '1';
+                                menu.style.transform = 'translateY(0)';
+                            }, 10);
+                        }
+                    });
+    </script>
+</body>
+</html>

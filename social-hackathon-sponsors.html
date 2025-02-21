@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Social Hackathon - Sponsors</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&family=Montserrat:wght@400;700&display=swap');
+        
+        :root {
+            --primary: #FFFF00;
+            --primary-dark: #d6d600;
+            --background: #000000;
+            --card-bg: rgba(15, 15, 15, 0.7);
+            --text: #ffffff;
+            --text-secondary: #dddddd;
+            --border: #333333;
+            --hover-bg: rgba(30, 30, 30, 0.9);
+            --glow: rgba(255, 255, 0, 0.2);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        .background-graphics {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.2;
+        }
+        
+        .background-graphics .circuit-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,10 L90,50 L50,90 L10,50 Z' fill='none' stroke='%23333' stroke-width='0.5'/%3E%3Ccircle cx='50' cy='10' r='3' fill='none' stroke='%23333' stroke-width='0.5'/%3E%3Ccircle cx='90' cy='50' r='3' fill='none' stroke='%23333' stroke-width='0.5'/%3E%3Ccircle cx='50' cy='90' r='3' fill='none' stroke='%23333' stroke-width='0.5'/%3E%3Ccircle cx='10' cy='50' r='3' fill='none' stroke='%23333' stroke-width='0.5'/%3E%3Cline x1='50' y1='10' x2='10' y2='50' stroke='%23333' stroke-width='0.5'/%3E%3Cline x1='50' y1='10' x2='90' y2='50' stroke='%23333' stroke-width='0.5'/%3E%3Cline x1='10' y1='50' x2='50' y2='90' stroke='%23333' stroke-width='0.5'/%3E%3Cline x1='90' y1='50' x2='50' y2='90' stroke='%23333' stroke-width='0.5'/%3E%3C/svg%3E");
+            background-size: 300px 300px;
+            opacity: 0.1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+        }
+        
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        
+        .menu-button {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            background: rgba(25, 25, 25, 0.5);
+            border: 1px solid var(--border);
+            color: var(--text);
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .menu-button:hover {
+            background: rgba(50, 50, 50, 0.8);
+            box-shadow: 0 0 15px var(--glow);
+        }
+        
+        .menu-button::after {
+            content: '+';
+            font-size: 18px;
+        }
+        
+        .menu {
+            position: absolute;
+            top: 85px;
+            right: 0;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            display: none;
+            min-width: 220px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), 0 0 20px var(--glow);
+            z-index: 100;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .menu.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .menu ul {
+            list-style: none;
+        }
+        
+        .menu li {
+            margin-bottom: 15px;
+            transition: transform 0.2s ease;
+        }
+        
+        .menu li:hover {
+            transform: translateX(5px);
+        }
+        
+        .menu li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+            font-weight: 500;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .menu a:hover {
+            color: var(--primary);
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 40px 0;
+        }
+        
+        .page-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 60px;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #dddddd;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        
+        .coming-soon-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 50px 0;
+        }
+        
+        .coming-soon-graphic {
+            width: 200px;
+            height: 200px;
+            border: 2px solid #FFFF00;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 40px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .coming-soon-graphic::before,
+        .coming-soon-graphic::after {
+            content: '';
+            position: absolute;
+            background-color: #FFFF00;
+        }
+        
+        .coming-soon-graphic::before {
+            width: 80px;
+            height: 2px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .coming-soon-graphic::after {
+            width: 2px;
+            height: 80px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .coming-soon-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 30px;
+            font-weight: 700;
+            color: #FFFF00;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+        
+        .sponsor-tiers {
+            margin-top: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .sponsor-tier-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .tier-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 60px;
+            width: 100%;
+        }
+        
+        .tier-box {
+            width: 220px;
+            height: 220px;
+            background-color: rgba(34, 34, 34, 0.5);
+            border: 1px solid #333;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .tier-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255, 255, 0, 0.1);
+        }
+        
+        .tier-platinum {
+            border-color: #E5E4E2;
+        }
+        
+        .tier-gold {
+            border-color: #FFD700;
+        }
+        
+        .tier-silver {
+            border-color: #C0C0C0;
+        }
+        
+        .tier-bronze {
+            border-color: #CD7F32;
+        }
+        
+        .tier-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .tier-platinum .tier-name {
+            color: #E5E4E2;
+        }
+        
+        .tier-gold .tier-name {
+            color: #FFD700;
+        }
+        
+        .tier-silver .tier-name {
+            color: #C0C0C0;
+        }
+        
+        .tier-bronze .tier-name {
+            color: #CD7F32;
+        }
+        
+        .tier-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #aaaaaa;
+        }
+        
+        .contact-section {
+            background-color: rgba(34, 34, 34, 0.3);
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            max-width: 800px;
+            margin: 30px auto 0;
+        }
+        
+        .contact-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .contact-text {
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: #dddddd;
+        }
+        
+        .contact-button {
+            background-color: #FFFF00;
+            color: #000000;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 700;
+            border-radius: 4px;
+        }
+        
+        .contact-button:hover {
+            background-color: #e6e600;
+        }
+        
+        footer {
+            padding: 30px 0;
+            font-size: 12px;
+            color: #555555;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 40px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+                margin-bottom: 40px;
+            }
+            
+            .tier-container {
+                gap: 20px;
+            }
+            
+            .tier-box {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .contact-section {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-graphics">
+        <div class="circuit-grid"></div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                SH-2025
+            </div>
+            <button class="menu-button" id="menuButton">MENU</button>
+            <div class="menu" id="menu">
+                <ul>
+                    <li><a href="social-hackathon-home.html">Home</a></li>
+                    <li><a href="social-hackathon-about.html">About</a></li>
+                    <li><a href="social-hackathon-themes.html">Themes</a></li>
+                    <li><a href="social-hackathon-schedule.html">Schedule</a></li>
+                    <li><a href="social-hackathon-sponsors.html" class="active">Sponsors</a></li>
+                    <li><a href="social-hackathon-organizers.html">Organizers</a></li>
+                    <li><a href="social-hackathon-faq.html">FAQs</a></li>
+                </ul>
+            </div>
+        </header>
+        
+        <main>
+            <h1 class="page-title">Sponsors<span style="color:#FFFF00">.</span></h1>
+            <p class="subtitle">Our sponsors play a crucial role in making The Social Hackathon possible. Their support enables innovation and social impact at scale.</p>
+            
+            <div class="coming-soon-container">
+                <div class="coming-soon-graphic"></div>
+                <div class="coming-soon-text">Coming Soon</div>
+                <p class="subtitle" style="margin-top: 0;">Our sponsors for 2025 will be announced soon.</p>
+            </div>
+            
+            <div class="sponsor-tiers">
+                <h2 class="sponsor-tier-title">Sponsorship Tiers</h2>
+                
+                <div class="tier-container">
+                    <div class="tier-box tier-platinum">
+                        <div class="tier-name">Platinum</div>
+                        <div class="tier-label">Tier</div>
+                    </div>
+                    
+                    <div class="tier-box tier-gold">
+                        <div class="tier-name">Gold</div>
+                        <div class="tier-label">Tier</div>
+                    </div>
+                    
+                    <div class="tier-box tier-silver">
+                        <div class="tier-name">Silver</div>
+                        <div class="tier-label">Tier</div>
+                    </div>
+                    
+                    <div class="tier-box tier-bronze">
+                        <div class="tier-name">Bronze</div>
+                        <div class="tier-label">Tier</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-section">
+                <h3 class="contact-title">Interested in Sponsoring?</h3>
+                <p class="contact-text">Become a sponsor of The Social Hackathon 2025 and support the next generation of social innovators. Gain visibility, access to talent, and demonstrate your commitment to social impact through technology.</p>
+                <button class="contact-button">Contact Us</button>
+            </div>
+        </main>
+        
+        <footer>
+            &copy; 2025 The Social Hackathon. All rights reserved.
+        </footer>
+    </div>
+    
+    <script>
+       // Menu toggle with animation
+       const menuButton = document.getElementById('menuButton');
+                    const menu = document.getElementById('menu');
+                    
+                    menuButton.addEventListener('click', () => {
+                        if (menu.style.display === 'block') {
+                            menu.style.opacity = '0';
+                            menu.style.transform = 'translateY(10px)';
+                            setTimeout(() => {
+                                menu.style.display = 'none';
+                            }, 300);
+                        } else {
+                            menu.style.display = 'block';
+                            setTimeout(() => {
+                                menu.style.opacity = '1';
+                                menu.style.transform = 'translateY(0)';
+                            }, 10);
+                        }
+                    });
+    </script>
+</body>
+</html>
