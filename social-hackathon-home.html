@@ -62,6 +62,43 @@
             flex-direction: column;
             margin-bottom: 10px;
         }
+        .yellow {
+        color: #FFFF00; /* Yellow color */
+    }
+    .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            letter-spacing: 3px;
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .logo a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        .logo a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .logo a:hover {
+            color: var(--primary);
+        }
+        
+        .logo a:hover::after {
+            width: 100%;
+        }
         
         header {
             display: flex;
@@ -71,8 +108,8 @@
         }
         
         .logo {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 14px;
+            font-family: 'Bernoru', sans-serif;
+            font-size: 40px;
             letter-spacing: 2px;
             font-weight: 700;
         }
@@ -271,233 +308,101 @@
             text-align: center;
         }
         
-        .prize-pool {
-            position: absolute;
-            right: 20px;
-            bottom: 120px;
-            background-color: #FFFF00;
-            color: #000;
-            padding: 20px;
-            border-radius: 50%;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            text-align: center;
-            width: 150px;
-            height: 150px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            transform: rotate(5deg);
-            box-shadow: 0 4px 20px rgba(255, 255, 0, 0.3);
-        }
-        
-        .prize-label {
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-        
-        .prize-amount {
-            font-size: 24px;
-        }
-        
-        /* About Page Styles */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 80px;
-        }
-        
-        .page-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 60px;
-            font-weight: 900;
-            text-align: center;
-            margin-bottom: 60px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        
-        .about-section {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        .about-section h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #FFFF00;
-        }
-        
-        .about-section p {
-            line-height: 1.6;
-            color: #dddddd;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        
-        .stat-item {
-            background-color: rgba(34, 34, 34, 0.5);
-            border: 1px solid #444;
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            border-radius: 8px;
-        }
-        
-        .stat-item:hover {
-            transform: translateY(-5px);
-            background-color: rgba(34, 34, 34, 0.8);
-        }
-        
-        .stat-value {
-            font-family: 'Poppins', sans-serif;
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #FFFF00;
-        }
-        
-        .stat-label {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #dddddd;
-        }
-        
-        .testimonials {
-            margin-top: 80px;
-        }
-        
-        .testimonials-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 30px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-        
-        .testimonial-card {
-            background-color: rgba(34, 34, 34, 0.5);
-            border: 1px solid #444;
-            padding: 30px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            border-radius: 8px;
-        }
-        
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-            background-color: rgba(34, 34, 34, 0.8);
-        }
-        
-        .stars {
-            color: #FFFF00;
-            margin-bottom: 20px;
-            font-size: 18px;
-        }
-        
-        .testimonial-text {
-            margin-bottom: 20px;
-            line-height: 1.6;
-            color: #dddddd;
-        }
-        
-        .testimonial-author {
-            font-weight: 700;
-        }
-        
-        .testimonial-role {
-            font-size: 12px;
-            color: #aaaaaa;
-            margin-top: 5px;
-        }
-        
-        .timeline {
-            margin-top: 80px;
-            padding: 60px 0;
-            position: relative;
-        }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 1px;
-            height: 100%;
-            background-color: #444;
-            transform: translateX(-50%);
-        }
-        
-        .timeline-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 30px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 60px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .timeline-item {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 60px;
-            position: relative;
-        }
-        
-        .timeline-item:last-child {
-            margin-bottom: 0;
-        }
-        
-        .timeline-dot {
-            width: 20px;
-            height: 20px;
-            background-color: #FFFF00;
-            border-radius: 50%;
-            z-index: 1;
-        }
-        
-        .timeline-content {
-            width: 40%;
-            padding: 20px;
-            background-color: rgba(34, 34, 34, 0.5);
-            border: 1px solid #444;
-            margin-left: 20px;
-            border-radius: 8px;
-        }
-        
-        .timeline-date {
-            font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #FFFF00;
-        }
-        
-        .timeline-text {
-            line-height: 1.6;
-            color: #dddddd;
-        }
+        footer {
+    padding: 30px 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(34, 34, 34, 0.5);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--text);
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: var(--primary);
+    color: var(--background);
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px var(--glow);
+}
+.phone-number {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary);
+    color: var(--background);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: 700;
+    white-space: nowrap;
+    font-size: 14px;
+    display: none;
+    box-shadow: 0 0 10px var(--glow);
+}
+
+.phone-number::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid var(--primary);
+}
+
+.contact-icon:hover .phone-number {
+    display: block;
+}
+
+
+.copyright {
+    font-size: 12px;
+    color: #555555;
+}
+
+@media (max-width: 576px) {
+    .social-icons {
+        gap: 15px;
+    }
+    
+    .social-icon {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .social-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+    .phone-number {
+        font-size: 12px;
+        padding: 4px 8px;
+        top: -35px;
+    }
+}
+    
         /* Enhanced Responsive Styles */
 @media (max-width: 1024px) {
   .title {
@@ -658,12 +563,12 @@
     <div class="container">
         <header>
             <div class="logo">
-                SH-2025
+                <a href="social-hackathon-home.html"> <span class="yellow">&lt;</span><span>/</span><span class="yellow">&gt;</span></a>
             </div>
             <button class="menu-button" id="menuButton">MENU</button>
             <div class="menu" id="menu">
                 <ul>
-                    <li><a href="social-hackathon-home.html">Home</a></li>
+                    <!-- <li><a href="social-hackathon-home.html">Home</a></li> -->
                     <li><a href="social-hackathon-about.html">About</a></li>
                     <li><a href="social-hackathon-themes.html">Themes</a></li>
                     <li><a href="social-hackathon-schedule.html">Schedule</a></li>
@@ -713,9 +618,38 @@
                 <div class="prize-amount">60,000/-</div>
             </div> -->
         </main>
-        
         <footer>
-            &copy; 2025 The Social Hackathon. All rights reserved.
+            <div class="social-icons">
+                <a href="https://www.instagram.com/thesocialhackathon?utm_source=qr&igsh=NmRxeGVvb3ZtZGRi" target="_blank" class="social-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/innovation-club-4847a2333/" target="_blank" class="social-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                </a>
+                <a href="mailto:innovationclub@cmrit.ac.in" class="social-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                </a>
+                <div class="social-icon contact-icon" id="contactIcon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    <div class="phone-number" id="phoneNumber">+91 7975790986</div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 The Social Hackathon. All rights reserved.
+            </div>
         </footer>
     </div>
     
@@ -765,6 +699,30 @@
         
         updateCountdown();
         const interval = setInterval(updateCountdown, 1000);
+
+        // Contact phone tooltip functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const contactIcon = document.getElementById('contactIcon');
+    const phoneTooltip = document.getElementById('phoneTooltip');
+    
+    contactIcon.addEventListener('click', function() {
+        phoneTooltip.classList.toggle('active');
+        
+        // Hide tooltip after 3 seconds
+        if (phoneTooltip.classList.contains('active')) {
+            setTimeout(function() {
+                phoneTooltip.classList.remove('active');
+            }, 3000);
+        }
+    });
+    
+    // Hide tooltip when clicking elsewhere
+    document.addEventListener('click', function(event) {
+        if (!contactIcon.contains(event.target) && !phoneTooltip.contains(event.target)) {
+            phoneTooltip.classList.remove('active');
+        }
+    });
+});
     </script>
 </body>
 </html>
