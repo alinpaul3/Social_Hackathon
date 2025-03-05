@@ -552,6 +552,26 @@
     border-right: 6px solid transparent;
     border-top: 6px solid var(--primary);
 }
+@media (max-width: 576px) {
+    .social-icons {
+        gap: 15px;
+    }
+    
+    .social-icon {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .social-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+    .phone-number {
+        font-size: 12px;
+        padding: 4px 8px;
+        top: -35px;
+    }
+}
 
 .contact-icon:hover .phone-number {
     display: block;
@@ -623,7 +643,6 @@
                     <li><a href="social-hackathon-themes.html">Themes</a></li>
                     <li><a href="social-hackathon-schedule.html">Schedule</a></li>
                     <li><a href="social-hackathon-sponsors.html">Sponsors</a></li>
-                    <li><a href="social-hackathon-organizers.html">Organizers</a></li>
                     <li><a href="social-hackathon-faq.html">FAQs</a></li>
                 </ul>
             </div>
@@ -690,7 +709,9 @@
                                 CMRIT, Brookfield, Bangalore
                             </a></p>
                         </div>
-                        <a href="#" class="register-button">REGISTER NOW</a>
+                        <button class="register-button" onclick="window.location.href='https://forms.gle/your-google-form-link';">
+                            REGISTER
+                        </button>
                     </div>
                 </div>
             </div>
