@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -34,7 +34,7 @@
         }
         
         .background-graphics {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -68,11 +68,11 @@
             justify-content: space-between;
             align-items: center;
             padding: 30px 0;
+            border-bottom: 1px solid rgba(51, 51, 51, 0.5);
+            position: relative;
         }
-        .yellow {
-        color: #FFFF00; /* Yellow color */
-    }
-    .logo {
+        
+        .logo {
             font-family: 'Poppins', sans-serif;
             font-size: 16px;
             letter-spacing: 3px;
@@ -106,7 +106,6 @@
         .logo a:hover::after {
             width: 100%;
         }
-        
         .logo {
             font-family: 'Bernoru', sans-serif;
             font-size: 40px;
@@ -114,7 +113,8 @@
             font-weight: 700;
         }
         .yellow {
-            color: #FFFF00;}
+        color: #FFFF00; /* Yellow color */
+    }
         
         .menu-button {
             font-family: 'Montserrat', sans-serif;
@@ -146,7 +146,7 @@
         .menu {
             position: absolute;
             top: 85px;
-            right: 0;
+            right: 20px;
             background-color: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(10px);
             padding: 20px;
@@ -224,6 +224,7 @@
             margin-left: auto;
             margin-right: auto;
             line-height: 1.6;
+            padding: 0 15px;
         }
         
         .coming-soon-container {
@@ -291,6 +292,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            width: 100%;
         }
         
         .sponsor-tier-title {
@@ -309,6 +311,7 @@
             gap: 40px;
             margin-bottom: 60px;
             width: 100%;
+            position: relative;
         }
         
         .tier-box {
@@ -323,11 +326,14 @@
             justify-content: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
+            position: relative;
+            z-index: 1;
         }
         
         .tier-box:hover {
             transform: translateY(-10px);
             box-shadow: 0 10px 30px rgba(255, 255, 0, 0.1);
+            z-index: 10;
         }
         
         .tier-platinum {
@@ -377,6 +383,153 @@
             color: #aaaaaa;
         }
         
+        /* Popup styles with improved responsiveness */
+        .tier-popup {
+            position: absolute;
+            width: 200px;
+            background-color: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            padding: 12px;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 0, 0.1);
+            color: var(--text);
+            text-align: left;
+            pointer-events: none;
+        }
+        
+        /* Popup positioning */
+        .tier-container .tier-box .tier-popup {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        /* Even boxes (1,3) - left side */
+        .tier-container .tier-box:nth-child(odd) .tier-popup {
+            right: 230px;
+            left: auto;
+            border-right: 3px solid;
+        }
+        
+        /* Odd boxes (2,4) - right side */
+        .tier-container .tier-box:nth-child(even) .tier-popup {
+            left: 230px;
+            right: auto;
+            border-left: 3px solid;
+        }
+        
+        /* Border colors for popups */
+        .tier-platinum .tier-popup {
+            border-color: #E5E4E2;
+        }
+        
+        .tier-gold .tier-popup {
+            border-color: #FFD700;
+        }
+        
+        .tier-silver .tier-popup {
+            border-color: #C0C0C0;
+        }
+        
+        .tier-bronze .tier-popup {
+            border-color: #CD7F32;
+        }
+        
+        .tier-box:hover .tier-popup {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+        
+        .tier-popup-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .tier-platinum .tier-popup-title {
+            color: #E5E4E2;
+        }
+        
+        .tier-gold .tier-popup-title {
+            color: #FFD700;
+        }
+        
+        .tier-silver .tier-popup-title {
+            color: #C0C0C0;
+        }
+        
+        .tier-bronze .tier-popup-title {
+            color: #CD7F32;
+        }
+        
+        .tier-popup-item {
+            margin-bottom: 8px;
+            font-size: 14px;
+            line-height: 1.4;
+            position: relative;
+            padding-left: 12px;
+        }
+        
+        .tier-popup-item:before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .tier-platinum .tier-popup-item:before {
+            color: #E5E4E2;
+        }
+        
+        .tier-gold .tier-popup-item:before {
+            color: #FFD700;
+        }
+        
+        .tier-silver .tier-popup-item:before {
+            color: #C0C0C0;
+        }
+        
+        .tier-bronze .tier-popup-item:before {
+            color: #CD7F32;
+        }
+        
+        .tier-popup-price {
+            font-weight: 700;
+            margin-top: 10px;
+            text-align: right;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+        
+        /* Arrow styles for popups */
+        .tier-popup:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            border-style: solid;
+        }
+        
+        .tier-container .tier-box:nth-child(odd) .tier-popup:after {
+            right: -10px;
+            transform: translateY(-50%);
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent rgba(15, 15, 15, 0.95);
+        }
+        
+        .tier-container .tier-box:nth-child(even) .tier-popup:after {
+            left: -10px;
+            transform: translateY(-50%);
+            border-width: 10px 10px 10px 0;
+            border-color: transparent rgba(15, 15, 15, 0.95) transparent transparent;
+        }
+        
         .contact-section {
             background-color: rgba(34, 34, 34, 0.3);
             border-radius: 8px;
@@ -384,6 +537,7 @@
             text-align: center;
             max-width: 800px;
             margin: 30px auto 0;
+            width: 100%;
         }
         
         .contact-title {
@@ -394,8 +548,8 @@
         }
         
         .contact-text {
-            margin-bottom: 30px;
-            line-height: 1.6;
+            margin-bottom: 5px;
+            line-height: 1.3;
             color: #dddddd;
         }
         
@@ -412,6 +566,7 @@
             transition: background-color 0.3s ease;
             font-weight: 700;
             border-radius: 4px;
+            margin-top: 50px;
         }
         
         .contact-button:hover {
@@ -424,6 +579,35 @@
             color: #555555;
             text-align: center;
             margin-top: auto;
+        }
+        
+        /* Media queries for responsive design */
+        @media (max-width: 992px) {
+            .tier-container {
+                gap: 30px;
+            }
+            
+            .tier-container .tier-box:nth-child(odd) .tier-popup,
+            .tier-container .tier-box:nth-child(even) .tier-popup {
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%) translateY(-120%);
+                top: 0;
+                border-left: none;
+                border-right: none;
+                border-bottom: 3px solid;
+            }
+            
+            .tier-container .tier-box:nth-child(odd) .tier-popup:after,
+            .tier-container .tier-box:nth-child(even) .tier-popup:after {
+                top: auto;
+                bottom: -10px;
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
+                border-width: 10px 10px 0 10px;
+                border-color: rgba(15, 15, 15, 0.95) transparent transparent transparent;
+            }
         }
         
         @media (max-width: 768px) {
@@ -441,12 +625,216 @@
             }
             
             .tier-box {
-                width: 150px;
-                height: 150px;
+                width: 160px;
+                height: 160px;
+            }
+            
+            .tier-name {
+                font-size: 18px;
+            }
+            
+            .tier-label {
+                font-size: 12px;
+            }
+            
+            .tier-popup {
+                width: 240px;
+                padding: 15px;
+                font-size: 13px;
+            }
+            
+            .tier-popup-title {
+                font-size: 16px;
+            }
+            
+            .tier-popup-item {
+                font-size: 13px;
+                margin-bottom: 6px;
             }
             
             .contact-section {
                 padding: 30px 20px;
+            }
+            
+            .contact-title {
+                font-size: 20px;
+            }
+            
+            .contact-text {
+                font-size: 14px;
+            }
+            
+            .coming-soon-graphic {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .coming-soon-text {
+                font-size: 24px;
+            }
+        }
+        
+        @media (max-width: 500px) {
+            .tier-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 40px;
+            }
+            
+            .tier-box {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .tier-name {
+                font-size: 20px;
+            }
+            
+            .tier-container .tier-box:nth-child(odd) .tier-popup,
+            .tier-container .tier-box:nth-child(even) .tier-popup {
+                transform: translateX(-50%) translateY(-110%);
+            }
+            
+            .page-title {
+                font-size: 32px;
+            }
+            
+            .sponsor-tier-title {
+                font-size: 20px;
+            }
+            
+            .header {
+                padding: 20px 0;
+            }
+            
+            .menu {
+                right: 10px;
+                min-width: 200px;
+            }
+            
+            .contact-button {
+                padding: 12px 24px;
+                font-size: 12px;
+            }
+        }
+         /* footer */
+         footer {
+            padding: 30px 0;
+            font-size: 12px;
+            color: #555555;
+            text-align: center;
+        }
+        
+        footer {
+    padding: 30px 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(34, 34, 34, 0.5);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--text);
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: var(--primary);
+    color: var(--background);
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px var(--glow);
+}
+.phone-number {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary);
+    color: var(--background);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: 700;
+    white-space: nowrap;
+    font-size: 14px;
+    display: none;
+    box-shadow: 0 0 10px var(--glow);
+}
+
+.phone-number::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid var(--primary);
+}
+
+.contact-icon:hover .phone-number {
+    display: block;
+}
+
+
+.copyright {
+    font-size: 12px;
+    color: #555555;
+}
+
+@media (max-width: 576px) {
+    .social-icons {
+        gap: 15px;
+    }
+    
+    .social-icon {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .social-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+    .phone-number {
+        font-size: 12px;
+        padding: 4px 8px;
+        top: -35px;
+    }
+}
+        
+        /* Touch device considerations */
+        @media (hover: none) {
+            .tier-box:hover {
+                transform: none;
+                box-shadow: none;
+            }
+            
+            .tier-box:active {
+                background-color: rgba(50, 50, 50, 0.5);
+            }
+            
+            .tier-box.active .tier-popup {
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
             }
         }
     </style>
@@ -464,12 +852,10 @@
             <button class="menu-button" id="menuButton">MENU</button>
             <div class="menu" id="menu">
                 <ul>
-                    <!-- <li><a href="social-hackathon-home.html">Home</a></li> -->
                     <li><a href="social-hackathon-about.html">About</a></li>
                     <li><a href="social-hackathon-themes.html">Themes</a></li>
                     <li><a href="social-hackathon-schedule.html">Schedule</a></li>
                     <li><a href="social-hackathon-sponsors.html" class="active">Sponsors</a></li>
-                    <li><a href="social-hackathon-organizers.html">Organizers</a></li>
                     <li><a href="social-hackathon-faq.html">FAQs</a></li>
                 </ul>
             </div>
@@ -492,57 +878,141 @@
                     <div class="tier-box tier-platinum">
                         <div class="tier-name">Platinum</div>
                         <div class="tier-label">Tier</div>
+                        <div class="tier-popup">
+                            <div class="tier-popup-title">Platinum Benefits</div>
+                            <div class="tier-popup-item">Naming right(“Hackathon powered by “X”)</div>
+                            <div class="tier-popup-item"></div>
+                            <div class="tier-popup-item">Exclusive logo on our banner</div>
+                            <div class="tier-popup-item">Keynote address, premium booth</div>
+                            <div class="tier-popup-item">Judge seat</div>
+                            <div class="tier-popup-item">Exclusive recruitment right</div>
+                            <div class="tier-popup-price">30,000/-</div>
+                        </div>
                     </div>
                     
                     <div class="tier-box tier-gold">
                         <div class="tier-name">Gold</div>
                         <div class="tier-label">Tier</div>
+                        <div class="tier-popup">
+                            <div class="tier-popup-title">Gold Benefits</div>
+                            <div class="tier-popup-item">Prominent logo on materials</div>
+                            <div class="tier-popup-item">Booth space</div>
+                            <div class="tier-popup-item">Branded session</div>
+                            <div class="tier-popup-item">Access to participant data(if possible)</div>
+                            <div class="tier-popup-item">Priority speaking slots</div>
+                            <div class="tier-popup-price">20,000/-</div>
+                        </div>
                     </div>
                     
                     <div class="tier-box tier-silver">
                         <div class="tier-name">Silver</div>
                         <div class="tier-label">Tier</div>
+                        <div class="tier-popup">
+                            <div class="tier-popup-title">Silver Benefits</div>
+                            <div class="tier-popup-item">Logo placement on website</div>
+                            <div class="tier-popup-item">Banners and promotional materials</div>
+                            <div class="tier-popup-item">Mid-level booth at the venue</div>
+                            <div class="tier-popup-item">Social media mentions.</div>
+                            <div class="tier-popup-price">10,000/-</div>
+                        </div>
                     </div>
                     
                     <div class="tier-box tier-bronze">
-                        <div class="tier-name">Bronze</div>
-                        <div class="tier-label">Tier</div>
+                        <div class="tier-name">In-Kind</div>
+                        <div class="tier-label">Sponsor</div>
+                        <div class="tier-popup">
+                            <div class="tier-popup-title">In-Kind Sponsor Benefits</div>
+                            <div class="tier-popup-item">Logo placement on event or return for providing food,etc.</div>
+                            <div class="tier-popup-price">Services/Products Equivalent</div>
+                        </div>
                     </div>
                 </div>
             </div>
             
             <div class="contact-section">
                 <h3 class="contact-title">Interested in Sponsoring?</h3>
-                <p class="contact-text">Become a sponsor of The Social Hackathon 2025 and support the next generation of social innovators. Gain visibility, access to talent, and demonstrate your commitment to social impact through technology.</p>
-                <button class="contact-button">Contact Us</button>
+                <p class="contact-text">Become a sponsor of The Social Hackathon 2025 and support the next generation of social innovators.
+                     Gain visibility, access to talent, and demonstrate your commitment to social impact through technology.</p><br>
+                <a href="mailto:innovationclub@cmrit.ac.in" class="contact-button">Contact Us</a>
             </div>
         </main>
         
         <footer>
-            &copy; 2025 The Social Hackathon. All rights reserved.
+            <div class="social-icons">
+                <a href="https://www.instagram.com/thesocialhackathon?utm_source=qr&igsh=NmRxeGVvb3ZtZGRi" target="_blank" class="social-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/innovation-club-4847a2333/" target="_blank" class="social-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                </a>
+                <a href="mailto:innovationclub@cmrit.ac.in" class="social-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                </a>
+                <div class="social-icon contact-icon" id="contactIcon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    <div class="phone-number" id="phoneNumber">+91 7975790986</div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 The Social Hackathon. All rights reserved.
+            </div>
         </footer>
     </div>
     
     <script>
        // Menu toggle with animation
        const menuButton = document.getElementById('menuButton');
-                    const menu = document.getElementById('menu');
-                    
-                    menuButton.addEventListener('click', () => {
-                        if (menu.style.display === 'block') {
-                            menu.style.opacity = '0';
-                            menu.style.transform = 'translateY(10px)';
-                            setTimeout(() => {
-                                menu.style.display = 'none';
-                            }, 300);
-                        } else {
-                            menu.style.display = 'block';
-                            setTimeout(() => {
-                                menu.style.opacity = '1';
-                                menu.style.transform = 'translateY(0)';
-                            }, 10);
-                        }
-                    });
+       const menu = document.getElementById('menu');
+       
+       menuButton.addEventListener('click', () => {
+           if (menu.style.display === 'block') {
+               menu.style.opacity = '0';
+               menu.style.transform = 'translateY(10px)';
+               setTimeout(() => {
+                   menu.style.display = 'none';
+               }, 300);
+           } else {
+               menu.style.display = 'block';
+               setTimeout(() => {
+                   menu.style.opacity = '1';
+                   menu.style.transform = 'translateY(0)';
+               }, 10);
+           }
+       });
+       
+       // Better touch device handling for tier boxes and popups
+       const tierBoxes = document.querySelectorAll('.tier-box');
+       
+       // Check if device is touch-based
+       const isTouchDevice = () => {
+           return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+       };
+       
+       if (isTouchDevice()) {
+           tierBoxes.forEach(box => {
+               box.addEventListener('click', function(e) {
+                   // Toggle active class
+                   const wasActive = this.classList.contains('active');
+                   
+                   // Remove active class from all boxes
+                   tierBoxes.forEach(b => b.classList.remove('active'));
+                   
+                });
+           });
+       }
     </script>
 </body>
 </html>
