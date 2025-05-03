@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Social Hackathon - Results</title>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&family=Montserrat:wght@400;700&display=swap');
+        :root {
+            --primary: #FFFF00;
+            --primary-dark: #d6d600;
+            --background: #000000;
+            --card-bg: rgba(15, 15, 15, 0.7);
+            --text: #ffffff;
+            --text-secondary: #dddddd;
+            --border: #333333;
+            --hover-bg: rgba(30, 30, 30, 0.9);
+            --glow: rgba(255, 255, 0, 0.2);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .background-graphics {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.2;
+        }
+        
+        .background-graphics .circuit-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,10 L90,50 L50,90 L10,50 Z' fill='none' stroke='%23333' stroke-width='0.5'/%3E%3Ccircle cx='50' cy='10' r='3' fill='none' stroke='%23333' stroke-width='0.5'/%3E%3Ccircle cx='90' cy='50' r='3' fill='none' stroke='%23333' stroke-width='0.5'/%3E%3Ccircle cx='50' cy='90' r='3' fill='none' stroke='%23333' stroke-width='0.5'/%3E%3Ccircle cx='10' cy='50' r='3' fill='none' stroke='%23333' stroke-width='0.5'/%3E%3Cline x1='50' y1='10' x2='10' y2='50' stroke='%23333' stroke-width='0.5'/%3E%3Cline x1='50' y1='10' x2='90' y2='50' stroke='%23333' stroke-width='0.5'/%3E%3Cline x1='10' y1='50' x2='50' y2='90' stroke='%23333' stroke-width='0.5'/%3E%3Cline x1='90' y1='50' x2='50' y2='90' stroke='%23333' stroke-width='0.5'/%3E%3C/svg%3E");
+            background-size: 300px 300px;
+            opacity: 0.1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(51, 51, 51, 0.5);
+            position: relative;
+        }
+        .yellow {
+            color: #FFFF00; /* Yellow color */
+        }
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            letter-spacing: 3px;
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .logo a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        .logo a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .logo a:hover {
+            color: var(--primary);
+        }
+        
+        .logo a:hover::after {
+            width: 100%;
+        }
+        
+        .logo {
+            font-family: 'Bernoru', sans-serif;
+            font-size: 40px;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        
+        .menu-button {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            background: rgba(25, 25, 25, 0.5);
+            border: 1px solid var(--border);
+            color: var(--text);
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .menu-button:hover {
+            background: rgba(50, 50, 50, 0.8);
+            box-shadow: 0 0 15px var(--glow);
+        }
+        
+        .menu-button::after {
+            content: '+';
+            font-size: 18px;
+        }
+        
+        .menu {
+            position: absolute;
+            top: 85px;
+            right: 0;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            display: none;
+            min-width: 220px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), 0 0 20px var(--glow);
+            z-index: 100;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .menu.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .menu ul {
+            list-style: none;
+        }
+        
+        .menu li {
+            margin-bottom: 15px;
+            transition: transform 0.2s ease;
+        }
+        
+        .menu li:hover {
+            transform: translateX(5px);
+        }
+        
+        .menu li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+            font-weight: 500;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .menu a:hover {
+            color: var(--primary);
+        }
+        
+        .page-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 60px;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            line-height: 1;
+            margin-top: 40px;
+        }
+        
+        .page-title span {
+            color: #FFFF00;
+        }
+
+        /* Results Section Styles */
+        .results-container {
+            margin: 0 auto 60px;
+            max-width: 1000px;
+        }
+        
+        .results-announcement {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: rgba(34, 34, 34, 0.5);
+            border: 1px solid #444;
+            border-radius: 8px;
+        }
+        
+        .results-announcement p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+        
+        .category-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin: 60px 0 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #FFFF00;
+            color: #ffffff;
+            position: relative;
+        }
+        
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background-color: #FFFF00;
+        }
+        
+        .results-table-container {
+            overflow-x: auto;
+            margin-bottom: 40px;
+        }
+        
+        .results-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 15px;
+        }
+        
+        .results-table thead {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #FFFF00;
+            font-weight: 700;
+        }
+        
+        .results-table th {
+            padding: 15px;
+            text-align: left;
+            font-size: 14px;
+        }
+        
+        .results-table tbody tr {
+            background-color: rgba(34, 34, 34, 0.5);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .results-table tbody tr:hover {
+            transform: translateY(-3px);
+            background-color: rgba(50, 50, 50, 0.7);
+        }
+        
+        .results-table td {
+            padding: 20px 15px;
+            border-top: 1px solid #444;
+            border-bottom: 1px solid #444;
+        }
+        
+        .results-table td:first-child {
+            border-left: 1px solid #444;
+            border-radius: 8px 0 0 8px;
+        }
+        
+        .results-table td:last-child {
+            border-right: 1px solid #444;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .results-note {
+            background-color: rgba(34, 34, 34, 0.5);
+            border: 1px solid #444;
+            border-left: 4px solid #FFFF00;
+            padding: 20px;
+            border-radius: 4px;
+            margin-top: 40px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #dddddd;
+        }
+        
+        /* footer */
+        footer {
+            padding: 30px 0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: auto;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(34, 34, 34, 0.5);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary);
+            color: var(--background);
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px var(--glow);
+        }
+        
+        .phone-number {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary);
+            color: var(--background);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-weight: 700;
+            white-space: nowrap;
+            font-size: 14px;
+            display: none;
+            box-shadow: 0 0 10px var(--glow);
+        }
+
+        .phone-number::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid var(--primary);
+        }
+        
+        .contact-icon:hover .phone-number {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 40px;
+            }
+            
+            .category-title {
+                font-size: 28px;
+            }
+            
+            .results-table th, 
+            .results-table td {
+                padding: 12px 10px;
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .social-icons {
+                gap: 15px;
+            }
+            
+            .social-icon {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .social-icon svg {
+                width: 18px;
+                height: 18px;
+            }
+            
+            .phone-number {
+                font-size: 12px;
+                padding: 4px 8px;
+                top: -35px;
+            }
+            
+            .results-table th, 
+            .results-table td {
+                padding: 10px 8px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="background-graphics">
+<div class="circuit-grid"></div>
+</div>
+<div class="container">
+<header>
+<div class="logo">
+<a href="index.html"> <span class="yellow">&lt;</span><span>/</span><span class="yellow">&gt;</span></a>
+</div>
+<button class="menu-button" id="menuButton">MENU</button>
+<div class="menu" id="menu">
+<ul>
+<li><a href="social-hackathon-about.html">About</a></li>
+<li><a href="social-hackathon-themes.html">Themes</a></li>
+<li><a href="social-hackathon-schedule.html">Schedule</a></li>
+<li><a href="social-hackathon-results.html">Results</a></li>
+<li><a href="social-hackathon-faq.html">FAQs</a></li>
+</ul>
+</div>
+</header>
+<main>
+<h1 class="page-title">
+                ROUND 1 <span>RESULTS</span>
+</h1>
+<div class="results-container">
+<div class="results-announcement">
+<p>Congratulations to all the teams who have advanced to the final round of The Social Hackathon! We received many impressive submissions, and after careful evaluation, the following teams have been selected to participate in Round 2 (Final Round) on May 15-16, 2025.</p>
+</div>
+<!-- Software Category -->
+<h2 class="category-title">Software Category</h2>
+<div class="results-table-container">
+<table class="results-table">
+<thead>
+<tr>
+<th>SL. No</th>
+<th>Team Name</th>
+<th>College</th>
+</tr>
+</thead>
+<tbody><tr><td>1</td><td>Hanuman</td><td>CMR Institute of Technology</td></tr><tr><td>2</td><td>DevHope</td><td>CMR Institute of Technology</td></tr><tr><td>3</td><td>The AI Optimizers</td><td>CMR Institute of Technology</td></tr><tr><td>4</td><td>Tech4Paws</td><td>CMR Institute of Technology</td></tr><tr><td>5</td><td>Runtime Terror</td><td>CMR Institute of Technology</td></tr><tr><td>6</td><td>Rescue rangers</td><td>CMR INSTITUTE OF TECHNOLOGY</td></tr><tr><td>7</td><td>Coffee Overflow</td><td>CMR Institute of Technology</td></tr><tr><td>8</td><td>gtx</td><td>Siddaganga Institute of Technology</td></tr><tr><td>9</td><td>Codvars</td><td>Cambridge Institute of Technology</td></tr><tr><td>10</td><td>The Bro Code</td><td>CMR Institute of Technology</td></tr><tr><td>11</td><td>TEAM NEXLOT</td><td>GOPALAN COLLEGE OF ENGINEERING AND MANAGEMENT</td></tr><tr><td>12</td><td>InnoQuest</td><td>MVJ College Of Engineering</td></tr><tr><td>13</td><td>Nonce</td><td>CMR Institute of Technology</td></tr><tr><td>14</td><td>FOCUS</td><td>University of Visvesvaraya College of Engineering</td></tr><tr><td>15</td><td>Safety Ninjas</td><td>CMR Institute of Technology</td></tr><tr><td>16</td><td>Techno Blazers</td><td>CMR Institute of Technology</td></tr><tr><td>17</td><td>PowerGrid</td><td>CMR Institute of Technology</td></tr><tr><td>18</td><td>TrioByte</td><td>Amrita Vishwa Vidyapeetham</td></tr><tr><td>19</td><td>TEAM EKALAVYA</td><td>PES UNIVERSITY</td></tr><tr><td>20</td><td>FuFu-Shinigami's</td><td>Sindhi College</td></tr><tr><td>21</td><td>Clinnovaters</td><td>Seshadri Rao Gudlavalleru Engineering College</td></tr><tr><td>22</td><td>DosAI</td><td>CMR Institute of Technology</td></tr><tr><td>23</td><td>Team Nexa</td><td>CMR Institute Of Technology</td></tr><tr><td>24</td><td>ZeroSphere</td><td>CMR Institute of Technology</td></tr><tr><td>25</td><td>Hackers</td><td>CMR Institute of Technology</td></tr><tr><td>26</td><td>KrishiMitra</td><td>MVJ COLLEGE OF ENGINEERING</td></tr><tr><td>27</td><td>CodeGreen</td><td>CMR Institute of Technology</td></tr><tr><td>28</td><td>Kaapi Overflow</td><td>CMR Institute of Technology</td></tr><tr><td>29</td><td>Syndicate</td><td>Gopalan College of Engineering and Management</td></tr><tr><td>30</td><td>CertiSure</td><td>MVJ COLLEGE OF ENGINEERING</td></tr><tr><td>31</td><td>Stuck-between-Pixels</td><td>SARDAR PATEL INSTITUTE OF TECHNOLOGY, MUMBAI</td></tr><tr><td>32</td><td>Team Pawtrollers</td><td>CMR INSTITUTE OF TECHNOLOGY</td></tr><tr><td>33</td><td>Normal_Dev's</td><td>M S Ramaiah Institute Of Technology</td></tr><tr><td>34</td><td>404DevFound</td><td>Siddaganga Institute of Technology</td></tr><tr><td>35</td><td>Prajavani Protocol</td><td>BNM Institute of Technology</td></tr><tr><td>36</td><td>TEAM A</td><td>MVJ COLLEGE OF ENGINEERING</td></tr><tr><td>37</td><td>Kookie-Box</td><td>PDA College of Engineering</td></tr><tr><td>38</td><td>NeuroSentinels</td><td>CMR Institute of Technology</td></tr><tr><td>39</td><td>Code Stormers</td><td>Sri Sairam College of Engineering</td></tr><tr><td>40</td><td>Debutants</td><td>CMR Institute of Technology</td></tr><tr><td>41</td><td>RealityCheck</td><td>R V College of Engineering</td></tr><tr><td>42</td><td>Tri-Coders</td><td>CMR Institute of Technology</td></tr><tr><td>43</td><td>PawPort</td><td>CMR Institute of Technology</td></tr><tr><td>44</td><td>Byte Benders</td><td>Sri Manakula Vinayagar engineering</td></tr><tr><td>45</td><td>GramHealers</td><td>R V college of Engineering</td></tr><tr><td>46</td><td>The Mavericks</td><td>SRM Institute of Science and Technology, Chennai</td></tr><tr><td>47</td><td>CodeCrafters</td><td>BML Munjal University</td></tr><tr><td>48</td><td>Techies girls</td><td>CMR institute of technology</td></tr><tr><td>49</td><td>Ethical Hackers</td><td>CMR Institute of Technology</td></tr><tr><td>50</td><td>MindHackers</td><td>CMR Institute of Technology</td></tr><tr><td>51</td><td>Agritech innovators</td><td>Techno India university</td></tr><tr><td>52</td><td>Illu-Minati</td><td>BMS Institute of technology and management</td></tr><tr><td>53</td><td>Mega Bytes</td><td>Sir M Visvesvaraya Institute of Technology</td></tr><tr><td>54</td><td>CodeCatalyst</td><td>Siddaganaga Institute Of Technology</td></tr><tr><td>55</td><td>DEViant</td><td>R.V. College of Engineering (RVCE)</td></tr><tr><td>56</td><td>CodeCradle</td><td>Siddaganga Institute of technology</td></tr><tr><td>57</td><td>FramZilla</td><td>Dayananda Sagar College of Engineering (DSCE), Bengaluru</td></tr><tr><td>58</td><td>BACKLOG</td><td>Siddaganga Institute of Technology (SIT), Tumkur</td></tr><tr><td>59</td><td>TEAM FUTURE STACK</td><td>Techno India University,west bengal</td></tr><tr><td>60</td><td>IDEATIC INNOVATORS</td><td>B.S. Abdur Rahman University (BSARU), Chennai</td></tr><tr><td>61</td><td>TECH TITANS</td><td>Siddaganga institute of technology,Tumkur.</td></tr><tr><td>62</td><td>Genetic Drift</td><td>BMS Institute of Technology and Management</td></tr><tr><td>63</td><td>The code blooded</td><td>DON BOSCO INSTITUTE OF TECHNOLOGY BANGALORE</td></tr><tr><td>64</td><td>The Optimizers</td><td>R.V. College of Engineering</td></tr><tr><td>65</td><td>The Unstoppables</td><td>SRI ESHWAR COLLEGE OF ENGINEERING</td></tr><tr><td>66</td><td>Lazy Monks</td><td>Bangalore Institute of Technology</td></tr><tr><td>67</td><td>The Bugs Squad</td><td>NMIT, Lowry Adventist College, Garden City University</td></tr><tr><td>68</td><td>sudo wudo</td><td>M S Ramaiah Institute of Technology (MSRIT)</td></tr><tr><td>69</td><td>Society's Engineers</td><td>CMR Institute Of Technology</td></tr></tbody>
+</table>
+</div>
+<!-- Hardware Category -->
+<h2 class="category-title">Hardware Category</h2>
+<div class="results-table-container">
+<table class="results-table">
+<thead>
+<tr>
+<th>SL. No</th>
+<th>Team Name</th>
+<th>College</th>
+</tr>
+</thead>
+<tbody><tr><td>1</td><td>P.A.W.S (Proactive Animal Warning System)</td><td>CMR Institute Of Technology</td></tr><tr><td>2</td><td>The Creators</td><td>Adhiparasakthi Engineering College</td></tr><tr><td>3</td><td>GATiRAKSHAK</td><td>National Public School Agara, Bangalore</td></tr><tr><td>4</td><td>Medheads</td><td>CMR institute of technology</td></tr><tr><td>5</td><td>Trinova</td><td>CMRIT</td></tr><tr><td>6</td><td>Super ninjas</td><td>CMRIT</td></tr><tr><td>7</td><td>FrugalSOT</td><td>Vellore Institute of Technology</td></tr><tr><td>8</td><td>IDEATORS</td><td>CMRIT</td></tr><tr><td>9</td><td>Hive X</td><td>Dr Ambedkar Institute of Technology</td></tr><tr><td>10</td><td>TAGARU TECH</td><td>CMR IT</td></tr><tr><td>11</td><td>DXTR MINDS</td><td>CMR IT</td></tr><tr><td>12</td><td>OcuSense</td><td>RV COLLEGE OF ENGINEERING</td></tr><tr><td>13</td><td>TEAM-HUSTLERS</td><td>MVJ COLLEGE OF ENGINEERING</td></tr><tr><td>14</td><td>Tridev</td><td>CMRIT</td></tr><tr><td>15</td><td>gorkhali</td><td>CMRIT</td></tr><tr><td>16</td><td>Hunters</td><td>Mvj college of engineering , New Horizon</td></tr><tr><td>17</td><td>TinyVoices Tech</td><td>CMR Institute of Technology</td></tr><tr><td>18</td><td>SPL Squad</td><td>Cmrit</td></tr><tr><td>19</td><td>NocTox</td><td>CMR Institute Of Technology</td></tr><tr><td>20</td><td>MICRO X</td><td>CMR Institute of technology</td></tr><tr><td>21</td><td>Code Red Crew</td><td>CMR Institute of Technology Bengaluru</td></tr><tr><td>22</td><td>Gene Switch</td><td>CMR Institute of Technology</td></tr><tr><td>23</td><td>THE MEDUCATORS</td><td>NARMADA COLLEGE OF SCIENCE AND COMMERCE</td></tr><tr><td>24</td><td>InnoVerse</td><td>Rajalakshmi Engineering College (REC), Chennai</td></tr><tr><td>25</td><td>tech titans</td><td>BVRIT HYDERABAD College of Engineering For Women</td></tr><tr><td>26</td><td>BUGS</td><td>CMR Institute of Technology</td></tr></tbody>
+</table>
+</div>
+<div class="results-note">
+<p>
+                        Note: All selected teams should confirm their participation by May 10th, 2025. 
+                        Teams will receive detailed instructions regarding the final round via email and WhatsApp.
+                        Please ensure to bring your college ID cards for verification during check-in.
+                    </p>
+</div>
+</div>
+</main>
+<footer>
+<div class="social-icons">
+<a class="social-icon" href="https://www.instagram.com/socialhackathon_cmrit?utm_source=qr&amp;igsh=enExdmZpNHl1OHBw" target="_blank">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect>
+<path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+<line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+</svg>
+</a>
+<a class="social-icon" href="https://www.linkedin.com/in/innovation-club-4847a2333/" target="_blank">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+<rect height="12" width="4" x="2" y="9"></rect>
+<circle cx="4" cy="4" r="2"></circle>
+</svg>
+</a>
+<a class="social-icon" href="mailto:innovationclub@cmrit.ac.in">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+<polyline points="22,6 12,13 2,6"></polyline>
+</svg>
+</a>
+<div class="social-icon contact-icon" id="contactIcon">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+</svg>
+<div class="phone-number" id="phoneNumber">+91 7975790986</div>
+</div>
+</div>
+<div class="copyright">
+                © 2025 The Social Hackathon. All rights reserved.
+            </div>
+</footer>
+</div>
+<script>
+      // Menu toggle with animation
+      const menuButton = document.getElementById('menuButton');
+      const menu = document.getElementById('menu');
+      
+      menuButton.addEventListener('click', () => {
+          if (menu.style.display === 'block') {
+              menu.style.opacity = '0';
+              menu.style.transform = 'translateY(10px)';
+              setTimeout(() => {
+                  menu.style.display = 'none';
+              }, 300);
+          } else {
+              menu.style.display = 'block';
+              setTimeout(() => {
+                  menu.style.opacity = '1';
+                  menu.style.transform = 'translateY(0)';
+              }, 10);
+          }
+      });
+    </script>
+</body>
+</html>
